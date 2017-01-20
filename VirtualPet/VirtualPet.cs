@@ -13,19 +13,34 @@ namespace VirtualPet
         //fields
         private string petname;
         private string pet_type;
+        private string energy;
+        private string skilllevel;
+        private string food;
+        private string sleep;
+        private string hunger;
+        
 
         //properties
-        public string Energy { get; set; }
-        public string SkillLevel { get; set; }
+        public string Energy
+        {
+            get { return this.energy; }
+            set { this.energy = value; }
+        }
+        public string SkillLevel
+        { get { return this.skilllevel; }
+            set { this.skilllevel = value; }
+        }
         public string Food { get; set; }
         public string Hunger { get; set; }
-        public string Tired { get; set; }
+        public string Sleep { get; set; }
+        public int Selector { get; set; }
 
         public string GetName
             {
             get {return this.petname; }
             set { this.petname = value; }
             }
+
         public string GetPetType
         {
             get { return this.pet_type; }
@@ -54,19 +69,23 @@ namespace VirtualPet
         {
             Console.WriteLine("Interaction Menu: " + petname + " The " + pet_type);
         }
-        public void Play ()
+        public void StatusDisplay ()
+        {
+            Console.WriteLine("\nEnergy Level: " + Energy + "\nSkill Level: " + SkillLevel + "\nFood Level: " + Food + "\nHunger Level: " + Hunger + "\nSleep Level: " + Sleep);
+    }
+        public void Play()
+        {
+            this.energy = "No Energy";
+        }
+        public void Train()
         {
 
         }
-        public void Train ()
+        public void Hunt()
         {
 
         }
-        public void Hunt ()
-        {
-
-        }
-        public void Eat ()
+        public void Eat()
         {
 
         }
@@ -74,11 +93,7 @@ namespace VirtualPet
         {
 
         }
-        public void Sleep ()
-        {
-
-        }
-        public void Bathroom()
+        public void SleepMethod()
         {
 
         }

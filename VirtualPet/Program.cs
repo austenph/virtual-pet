@@ -61,8 +61,35 @@ namespace VirtualPet
             
                 pet.MenuDisplayNameandDragon();//always prints out dragons name and the words The Dragon
             Console.WriteLine("Please select which interation you want from the options below(enter a number 1 - 5): ");
-                Console.WriteLine("1.Play\n2.Train\n3.Hunt\n4.Eat\n5.Fly\n6.Sleep\n7.Bathroom");
+                Console.WriteLine("1.Play\n2.Train\n3.Hunt\n4.Eat\n5.Fly\n6.Sleep\n");
+            pet.StatusDisplay();
+            pet.Selector= int.Parse(Console.ReadLine());
 
+            switch (pet.Selector)
+            {
+                case 1:
+                    pet.Play();
+                    break;
+                case 2:
+                    pet.Train();
+                    break;
+                case 3:
+                    pet.Hunt();
+                    break;
+                case 4:
+                    pet.Eat();
+                    break;
+                case 5:
+                    pet.Fly();
+                    break;
+                case 6:
+                    pet.SleepMethod();
+                    break;
+                default:
+                    break;
+
+            }
+            pet.StatusDisplay();//displays the status of the pet's attributes
 
 
 
@@ -76,5 +103,30 @@ namespace VirtualPet
             hatch= ("\n1.....2......3.... Your Dragon has hatched!!\nCongrats, its a boy!");
             return hatch;
         }
+       //static public void Play()
+       // {
+       //     .Energy = "No Energy";
+
+       // }
+       //static public void Train()
+       // {
+
+       // }
+       //static public void Hunt()
+       // {
+
+       // }
+       // static public void Eat()
+       // {
+
+       // }
+       // static public void Fly()
+       // {
+
+       // }
+       // static public void SleepMethod()
+       // {
+
+       // }
     }
 }
