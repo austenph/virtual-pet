@@ -18,8 +18,12 @@ namespace VirtualPet
         private string food;
         private string sleep;
         private string hunger;
-        
-
+        private string play;
+        private string train;
+        private string hunt;
+        private string feed;
+        private string fly;
+        private string sleepmethod;
         //properties
         public string Energy
         {
@@ -82,9 +86,17 @@ namespace VirtualPet
             this.food = food;
             this.hunger = hunger;
             this.sleep = sleep;
+            this.play = "Play";
+            this.train = "Train";
+            this.hunt = "Hunt";
+            this.feed = "Feed";
+            this.fly = "Fly";
+            this.sleepmethod = "Sleep";
         }
-        //methods
        
+        //methods
+        
+
         public void MenuDisplayNameandDragon ()
         {
             Console.WriteLine("Interactive Menu: " + petname + " The " + pet_type);
@@ -96,17 +108,22 @@ namespace VirtualPet
         
         public void Play()
         {
-            Console.WriteLine("\nYou have chosen to Play with " + petname + "!");
+             Console.WriteLine("\nYou have chosen to " + play + " with " + petname + "!");
+            int[] playtimes = { 10, 15, 20, 30, 60 };
+            Random randomnum = new Random();
+            int howMuchPlay = playtimes[randomnum.Next(playtimes.Length)];
+            Console.WriteLine("\nAftr playing with " + petname + " for " + howMuchPlay + " minutes he is now: ");
+            StatusDisplay();
             this.energy = "Medium Energy";
             this.skilllevel = "No Change";
             this.food = "No Change";
             this.hunger = "Hungry";
             this.sleep = "Sleepy";
 
-        }
+    }
         public void Train()
         {
-            Console.WriteLine("\nYou have chosen to Train " + petname + "!");
+            Console.WriteLine("\nYou have chosen to" + train+  " " + petname + "!");
             this.energy = "Medium Energy";
             this.skilllevel = "New Skill Level Achieved!";
             this.food = "No Change";
@@ -115,7 +132,7 @@ namespace VirtualPet
         }
         public void Hunt()
         {
-            Console.WriteLine("\nYou have chosen for " + petname + " to hunt!");
+            Console.WriteLine("\nYou have chosen for " + petname + " to" + hunt+ "!");
             this.energy = "Drained Energy";
             this.skilllevel = "No Change";
             this.food = "Full Food Storage";
@@ -124,7 +141,7 @@ namespace VirtualPet
         }
         public void Eat()
         {
-            Console.WriteLine("\nYou have chosen for " + petname + "to eat!");
+            Console.WriteLine("\nYou have chosen to" + feed + petname + "!");
             this.energy = "Full Energy";
             this.skilllevel = "No Change";
             this.food = "No Food Storage";
@@ -133,7 +150,7 @@ namespace VirtualPet
         }
         public void Fly()
         {
-            Console.WriteLine("\nYou have chosen for " + petname + "to fly!");
+            Console.WriteLine("\nYou have chosen for " + petname + "to" +fly+ "!");
             this.energy = "Drained Energy";
             this.skilllevel = "New Skill Level Achieved!";
             this.food = "No Change";
@@ -142,7 +159,7 @@ namespace VirtualPet
         }
         public void SleepMethod()
         {
-            Console.WriteLine("\nYou have chosen for" + petname + "to go to sleep!");
+            Console.WriteLine("\nYou have chosen for" + petname + "to go to"+sleep + "!");
             this.energy = "Full Energy";
             this.skilllevel = "No Change";
             this.food = "No Change";
