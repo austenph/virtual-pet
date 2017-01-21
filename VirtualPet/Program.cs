@@ -15,6 +15,7 @@ namespace VirtualPet
             Console.WriteLine("Welcome to Dragon Hatcher!");
             Console.WriteLine("The interactive pet game were you hatch and raise your very own dragon!");
             Console.WriteLine("Let's Start!");
+            Enter();
             Console.WriteLine("\nWe are at the Dragon Egg Store.\nPlease select which egg you want from the options below (enter a number 1-5): ");
             Console.WriteLine("1. Blue Egg for $50");
             Console.WriteLine("2. Purple Egg for $100");
@@ -45,24 +46,28 @@ namespace VirtualPet
                 default:
                     break;
         }
-            Console.WriteLine("You are now the proud owner of a dragon!");
+            Console.WriteLine("You are now the proud owner of a dragon egg!");
+            Enter();
             Console.Write("\nA week has past and your egg is ready to Hatch. You must rub the egg three times");
-            Console.Write("to hatch it. Type \"Hatch\" to start hatching your dragon!  ");
+            Console.Write("to hatch it. Type \"rub my egg\" to start hatching your dragon!  ");
             string hatch = Console.ReadLine();
-            Console.WriteLine(Hatch(hatch));
+            Hatch(hatch);
+            Console.WriteLine("\nCrack!! Congrats, you have hatched your new baby dragon!");
+            Enter();
             Console.WriteLine("\nNow it is time to start taking care of your new pet Dragon.");
             Console.WriteLine("Let's start by naming your pet! Enter the name you want for your dragon below: ");
-            VirtualPet pet = new VirtualPet("Dragon");
+            VirtualPet pet = new VirtualPet("Dragon", "High Energy", "No Skills Achieved", "No Food", "Hungry", "Not Sleepy");
             pet.GetName = Console.ReadLine();
             Console.WriteLine("You have named your dragon " + pet.GetName + "! Great Name!");
-            Console.WriteLine("Now you can interact with " + pet.GetName + "! \nWe will choose from a menu of options in order to raise him:\n" );
-
-           // do
-            
-                pet.MenuDisplayNameandDragon();//always prints out dragons name and the words The Dragon
-            Console.WriteLine("Please select which interation you want from the options below(enter a number 1 - 5): ");
-                Console.WriteLine("1.Play\n2.Train\n3.Hunt\n4.Eat\n5.Fly\n6.Sleep\n");
-            pet.StatusDisplay();
+            Enter();
+            Console.WriteLine("\nNow you can interact with " + pet.GetName + "! \nWe will choose from a menu of options in order to raise him. Let's Go!!" );
+            Enter();
+           do
+            { 
+                pet.StatusDisplay();
+                pet.MenuDisplayNameandDragon(); //always prints out dragons name and the words The Dragon
+            Console.WriteLine("Please select which interaction you want from the options below\n(enter a number 1 - 5): ");
+                Console.WriteLine("1.Play\n2.Train\n3.Hunt\n4.Eat\n5.Fly\n6.Sleep");
             pet.Selector= int.Parse(Console.ReadLine());
 
             switch (pet.Selector)
@@ -89,44 +94,31 @@ namespace VirtualPet
                     break;
 
             }
-            pet.StatusDisplay();//displays the status of the pet's attributes
+                Enter();
+                
 
 
 
-            //} while(true);
+            } while(pet.Selector<7);
 
 
         }
         //hatch method
-        static string Hatch (string hatch)
+        
+        static void Hatch (string hatch)
         {
-            hatch= ("\n1.....2......3.... Your Dragon has hatched!!\nCongrats, its a boy!");
-            return hatch;
+            for (int i = 3; i > 0; i--)
+            {
+                if (i == 3) { Console.Write("\n" + i + ".....Rub Me Again! "); }
+                else if(i==2) { Console.Write("\n" + i + "............One more rub! "); }
+                else if (i == 1) { Console.Write("\n" + i + ".....................................\n"); break; }
+                hatch = Console.ReadLine();
+            }
         }
-       //static public void Play()
-       // {
-       //     .Energy = "No Energy";
-
-       // }
-       //static public void Train()
-       // {
-
-       // }
-       //static public void Hunt()
-       // {
-
-       // }
-       // static public void Eat()
-       // {
-
-       // }
-       // static public void Fly()
-       // {
-
-       // }
-       // static public void SleepMethod()
-       // {
-
-       // }
+     static void Enter ()
+        {
+            Console.Write("(hit enter to continue)\n");
+            Console.ReadLine();
+        }
     }
 }
