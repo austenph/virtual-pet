@@ -25,7 +25,7 @@ namespace VirtualPet
                 int bank = Bank();
                 Console.WriteLine("You have randomly been given $" + bank + " in the bank.\n");//generates a random amount of money
             //Egg options
-                Console.WriteLine("Please select which egg you want from the options below.\n(enter a number 1-5 or type  \"Quit\" or \"Restart\": )");
+                Console.WriteLine("Please select which egg you want from the options below.\n(enter a number 1-5 or type  \"Quit\" or \"Restart\")");
                 Console.WriteLine("1. Blue Egg for $50");
                 Console.WriteLine("2. Purple Egg for $100");
                 Console.WriteLine("3. Green Egg for $110");
@@ -134,7 +134,7 @@ namespace VirtualPet
                 Console.WriteLine("\nNow it is time to start taking care of your new pet Dragon.");
                 Console.WriteLine("Let's start by naming your pet! Enter the name you want for your dragon below:\n(you can also quit or restart here) ");
                 //Below I am instantiating the new pet object and assigning it default pet type and Status values
-                VirtualPet pet = new VirtualPet("Dragon", "High Energy", "No Skills Achieved", "No Food", "Hungry", "Not Sleepy");
+                VirtualPet pet = new VirtualPet("Dragon", "High Energy", 0, "No Food", "Hungry", "Not Sleepy");
 
                 pet.GetName = Console.ReadLine();//naming and storing the name in GetName property
                 RestartorQuit(pet.GetName);
@@ -145,12 +145,17 @@ namespace VirtualPet
                 Enter();
                 do
                 {
-                    pet.MenuDisplayNameandDragon(); //always prints out dragons name and the words The Dragon
-                    Console.WriteLine("Please select which interaction you want from the options below\n(enter a number 1 - 5 or type \"Quit\" or \"Restart\" here): ");
+
+                int track = pet.Track();
+                pet.PrintTrack();
+                                pet.MenuDisplayNameandDragon(); //always prints out dragons name and the words The Dragon
+                Console.WriteLine("Please select which interaction you want from the options below\n(enter a number 1 - 6 or type \"Quit\" or \"Restart\" here): ");
                     Console.WriteLine("1.Play\n2.Train\n3.Hunt\n4.Feed\n5.Fly\n6.Sleep"); //menu of possible interactions
                     string selector = Console.ReadLine();
                     RestartorQuit(selector);
                     pet.Selector = int.Parse(selector);//takes users input a gives it to switch case
+
+                               
 
                     //switch case to activate the interaction methods in virtualpet class, based on user selection
                     switch (pet.Selector)
@@ -180,18 +185,20 @@ namespace VirtualPet
                     Enter();
                 } while (pet.Selector < 7);
 
+
+            
         }
         //hatch method
-            static void Hatch (string hatch)
+        static void Hatch(string hatch)
         {
-                for (int i = 3; i > 0; i--)
-                {
-                    if (i == 3) { Console.Write("\n" + i + ".....Rub Me Again! "); }
-                    else if (i == 2) { Console.Write("\n" + i + "............One more rub! "); }
-                    else if (i == 1) { Console.Write("\n" + i + ".....................................\n"); break; }
-                    hatch = Console.ReadLine();
-                }
+            for (int i = 3; i >= 1; i--)
+            {
+                if (i==3) { Console.WriteLine(i + "............. Rub Again!"); }
+                if (i==2) { Console.WriteLine(i + "...................Rub Again!"); }
+                if (i == 1) { Console.WriteLine(i + "......................................."); break; }
+                hatch = Console.ReadLine();
             }
+        }
             //hit enter to continue method
             static void Enter ()
         {
@@ -230,5 +237,20 @@ namespace VirtualPet
                     Environment.Exit(0);
                 }
             }
-        }
+        //static string AgeChange (int selector)
+        //{
+        //    string teen = "You are now a Teenager Dragon!";
+        //    string adult = "You are now an Adult Dragon!";
+        //    string elder = "You are now an Elder Dragon!";
+        //    if (selector == 5)
+        //    { return teen; }
+        //    else if(selector==10)
+        //    { return adult; }
+        //    else if(selector==20)
+        //    { return elder; }
+        //    else
+        //    {
+                
+        //    }      }      
+    }
 }

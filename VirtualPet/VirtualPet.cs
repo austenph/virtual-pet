@@ -8,13 +8,12 @@ namespace VirtualPet
 {
     class VirtualPet
     {
-       public enum LifeCycle {Baby, Tween, Teen, Adult};
-
         //fields
+        
         private string petname;
         private string pet_type;
         private string energy;
-        private string skilllevel;
+        private int skilllevel;
         private string food;
         private string sleep;
         private string hunger;
@@ -24,15 +23,25 @@ namespace VirtualPet
         private string feed;
         private string fly;
         private string sleepmethod;
-       
+        private int runningSkillLevel;
+        private int tracking;
+        private int tracker;
+
         //properties
+        
+      public int Tracking
+        {
+            get { return this.tracker; }
+            set { this.tracking = value; }
+        }
         public string Energy
         {
             get { return this.energy; }
             set { this.energy = value; }
         }
-        public string SkillLevel
-        { get { return this.skilllevel; }
+        public int SkillLevel
+        {
+            get { return this.runningSkillLevel; }
             set { this.skilllevel = value; }
         }
         public string Food
@@ -53,10 +62,10 @@ namespace VirtualPet
         public int Selector { get; set; }
 
         public string GetName
-            {
-            get {return this.petname; }
+        {
+            get { return this.petname; }
             set { this.petname = value; }
-            }
+        }
 
         public string GetPetType
         {
@@ -75,11 +84,11 @@ namespace VirtualPet
         {
 
         }
-        public VirtualPet (string pet_type)
+        public VirtualPet(string pet_type)
         {
             this.pet_type = pet_type;
         }
-        public VirtualPet (string pet_type, string energy, string skilllevel, string food, string hunger, string sleep)
+        public VirtualPet(string pet_type, string energy, int skilllevel, string food, string hunger, string sleep)
         {
             this.pet_type = pet_type;
             this.energy = energy;
@@ -94,90 +103,113 @@ namespace VirtualPet
             this.fly = "Fly";
             this.sleepmethod = "Sleep";
         }
-       
-        //methods
-        
 
-        public void MenuDisplayNameandDragon ()
+        //methods
+        public int Track()
+        {
+            this.tracking = tracker++;
+            return this.tracking;
+        }
+        public void PrintTrack ()
+        { 
+                if(this.tracking==2)
+                {
+                    Console.WriteLine("***Congrats you are now a Teenager Dragon!***\n");
+                }
+                if (this.tracking == 5)
+                {
+                    Console.WriteLine("***Wooh! You are now an Adult Dragon!***\n");
+                }
+                    if(this.tracking == 8)
+                    {
+                        Console.WriteLine("***Dragons, they grow up so fast. You are now an Elder Dragon.***\n");
+                    }
+            }
+
+        public void MenuDisplayNameandDragon()
         {
             Console.WriteLine("Interactive Menu: " + petname + " The " + pet_type);
         }
-        public void StatusDisplay ()
+        public void StatusDisplay()
         {
-            Console.WriteLine("\n" + petname+ "'s Current Status\nEnergy Level: " + Energy + "\nSkill Level: " + SkillLevel + "\nFood Stock Level: " + Food + "\nHunger Level: " + Hunger + "\nSleep Level: " + Sleep +"\n");
-    }
-        
+            Console.WriteLine("\n" + petname + "'s Current Status\nEnergy Level: " + Energy + "\nSkill Level: " + SkillLevel + "\nFood Stock Level: " + Food + "\nHunger Level: " + Hunger + "\nSleep Level: " + Sleep + "\n");
+        }
+
         public void Play()
         {
-             Console.WriteLine("\nYou have chosen to " + play + " with " + petname + "!");
+            Console.WriteLine("You have chosen to " + play + " with " + petname + "!");
             int[] playtimes = { 10, 15, 20, 30, 60 };
             Random randomnum = new Random();
             int howMuchPlay = playtimes[randomnum.Next(playtimes.Length)];
             Console.WriteLine("\nAfter playing with " + petname + " for " + howMuchPlay + " minutes he/she is now: ");
-            StatusDisplay();
-            Console.WriteLine("Base on " + petname + "'s Status, what would you like to do now?");
             this.energy = "Medium Energy";
-            this.skilllevel = "No Change";
+            this.skilllevel = runningSkillLevel;
             this.food = "No Change";
             this.hunger = "Hungry";
             this.sleep = "Sleepy";
-
-    }
-        public void Train()
-        {
-            Console.WriteLine("\nYou have chosen to " + train+  " " + petname + "!");
             StatusDisplay();
             Console.WriteLine("Base on " + petname + "'s Status, what would you like to do now?");
+        }
+        public void Train()
+        {
+            Console.WriteLine("You have chosen to " + train + " " + petname + "!");
+            Console.WriteLine("Congrats, every time you train, you gain a new skill level!");
             this.energy = "Medium Energy";
-            this.skilllevel = "New Skill Level Achieved!";
             this.food = "No Change";
             this.hunger = "Hungry";
             this.sleep = "No Change";
+            this.skilllevel = runningSkillLevel++;
+            StatusDisplay();
+           
+            Console.WriteLine("Base on " + petname + "'s Status, what would you like to do now?");
+           
         }
         public void Hunt()
         {
-            Console.WriteLine("\nYou have chosen for " + petname + " to " + hunt+ "!");
-            StatusDisplay();
-            Console.WriteLine("Base on " + petname + "'s Status, what would you like to do now?");
+            Console.WriteLine("You have chosen for " + petname + " to " + hunt + "!");
             this.energy = "Drained Energy";
-            this.skilllevel = "No Change";
+            this.skilllevel = runningSkillLevel;
             this.food = "Full Food Storage";
             this.hunger = "Hungry";
             this.sleep = "No Change";
+            StatusDisplay();
+            Console.WriteLine("Base on " + petname + "'s Status, what would you like to do now?");
         }
         public void Eat()
         {
-            Console.WriteLine("\nYou have chosen to " + feed + " " + petname + "!");
-            StatusDisplay();
-            Console.WriteLine("Base on " + petname + "'s Status, what would you like to do now?");
+            Console.WriteLine("You have chosen to " + feed + " " + petname + "!");
             this.energy = "Full Energy";
-            this.skilllevel = "No Change";
+            this.skilllevel = runningSkillLevel;
             this.food = "No Food Storage";
             this.hunger = "Full";
             this.sleep = "Sleepy";
+            StatusDisplay();
+            Console.WriteLine("Base on " + petname + "'s Status, what would you like to do now?");
         }
         public void Fly()
         {
-            Console.WriteLine("\nYou have chosen for " + petname + " to " +fly+ "!");
-            StatusDisplay();
-            Console.WriteLine("Base on " + petname + "'s Status, what would you like to do now?");
+            Console.WriteLine("You have chosen for " + petname + " to " + fly + "!");
             this.energy = "Drained Energy";
-            this.skilllevel = "New Skill Level Achieved!";
+            this.skilllevel = runningSkillLevel;
             this.food = "No Change";
             this.hunger = "No Change";
             this.sleep = "No Change";
+            StatusDisplay();
+            Console.WriteLine("Base on " + petname + "'s Status, what would you like to do now?");
         }
         public void SleepMethod()
         {
-            Console.WriteLine("\nYou have chosen for " + petname + " to go to "+sleep + "!");
-            StatusDisplay();
-            Console.WriteLine("Base on " + petname + "'s Status, what would you like to do now?");
+            Console.WriteLine("You have chosen for " + petname + " to go to " + sleepmethod + "!");
             this.energy = "Full Energy";
-            this.skilllevel = "No Change";
+            this.skilllevel = runningSkillLevel;
             this.food = "No Change";
             this.hunger = "No Change";
             this.sleep = "Not Sleepy";
+            StatusDisplay();
+            Console.WriteLine("Base on " + petname + "'s Status, what would you like to do now?");
+        }
+     
         }
     }
-}
+
 
