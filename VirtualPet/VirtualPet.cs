@@ -114,16 +114,20 @@ namespace VirtualPet
         { 
                 if(this.tracking==2)
                 {
-                    Console.WriteLine("***Congrats you are now a Teenager Dragon!***\n");
+                    Console.WriteLine("*****************GROWING UP*************************\nCongrats you are now a Teenage Dragon!\n******************************************\n");
                 }
                 if (this.tracking == 5)
                 {
-                    Console.WriteLine("***Wooh! You are now an Adult Dragon!***\n");
+                    Console.WriteLine("*****************GROWING UP*************************\nWooh! You are now an Adult Dragon!\n******************************************\n");
                 }
                     if(this.tracking == 8)
                     {
-                        Console.WriteLine("***Dragons, they grow up so fast. You are now an Elder Dragon.***\n");
+                        Console.WriteLine("*****************GROWING UP***********************\nDragons, they grow up so fast. You are now an Elder Dragon. 2 more Turns!\n******************************************\n");
                     }
+                    if(this.tracking ==10)
+            {
+                Console.WriteLine("\n*************************************\nYour Dragon's lifecylce has ended!\nThe game is over.\nPlease type \"Quit\" or \"Restart\".");
+            }
             }
 
         public void MenuDisplayNameandDragon()
@@ -148,7 +152,6 @@ namespace VirtualPet
             this.hunger = "Hungry";
             this.sleep = "Sleepy";
             StatusDisplay();
-            Console.WriteLine("Base on " + petname + "'s Status, what would you like to do now?");
         }
         public void Train()
         {
@@ -160,9 +163,6 @@ namespace VirtualPet
             this.sleep = "No Change";
             this.skilllevel = runningSkillLevel++;
             StatusDisplay();
-           
-            Console.WriteLine("Base on " + petname + "'s Status, what would you like to do now?");
-           
         }
         public void Hunt()
         {
@@ -173,7 +173,6 @@ namespace VirtualPet
             this.hunger = "Hungry";
             this.sleep = "No Change";
             StatusDisplay();
-            Console.WriteLine("Base on " + petname + "'s Status, what would you like to do now?");
         }
         public void Eat()
         {
@@ -184,7 +183,6 @@ namespace VirtualPet
             this.hunger = "Full";
             this.sleep = "Sleepy";
             StatusDisplay();
-            Console.WriteLine("Base on " + petname + "'s Status, what would you like to do now?");
         }
         public void Fly()
         {
@@ -195,7 +193,6 @@ namespace VirtualPet
             this.hunger = "No Change";
             this.sleep = "No Change";
             StatusDisplay();
-            Console.WriteLine("Base on " + petname + "'s Status, what would you like to do now?");
         }
         public void SleepMethod()
         {
@@ -206,9 +203,7 @@ namespace VirtualPet
             this.hunger = "No Change";
             this.sleep = "Not Sleepy";
             StatusDisplay();
-            Console.WriteLine("Base on " + petname + "'s Status, what would you like to do now?");
         }
-     
         }
     }
 

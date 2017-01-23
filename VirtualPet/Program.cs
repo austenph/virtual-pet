@@ -121,10 +121,25 @@ namespace VirtualPet
                 Console.Write("to hatch it. Type \"Rub\" to start hatching your dragon!\n(you can also quit or restart here) ");
 
                 string hatch = Console.ReadLine();
-                RestartorQuit(hatch);
-                Hatch(hatch);//method to hatch egg by taking user input "rub" three times
+            RestartorQuit(hatch);
+            bool counter = false;
+            do { if (hatch.Equals("rub", StringComparison.CurrentCultureIgnoreCase))
+                {
+                    
+                    Hatch(hatch);
+                    counter = false;
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Careful! You can only rub your dragon in order to hatch it. Try Again!");
+                    hatch = Console.ReadLine();
+                }
+            }
+            while (!counter);
+                 //method to hatch egg by taking user input "rub" three times
 
-                Console.WriteLine("\nCrack!! Congrats, you have hatched your new baby dragon!");
+                 Console.WriteLine("\nCrack!! Congrats, you have hatched your new baby dragon!");
                 Enter();
 
                 Console.WriteLine("Type \"Generate\" to see what color and gender your dragon is!");
@@ -148,15 +163,13 @@ namespace VirtualPet
 
                 int track = pet.Track();
                 pet.PrintTrack();
-                                pet.MenuDisplayNameandDragon(); //always prints out dragons name and the words The Dragon
-                Console.WriteLine("Please select which interaction you want from the options below\n(enter a number 1 - 6 or type \"Quit\" or \"Restart\" here): ");
-                    Console.WriteLine("1.Play\n2.Train\n3.Hunt\n4.Feed\n5.Fly\n6.Sleep"); //menu of possible interactions
+                RestartorQuit(Console.ReadLine());
+                pet.MenuDisplayNameandDragon(); //always prints out dragons name and the words The Dragon
+                Console.WriteLine("Please select which interaction you want from the options below\n(enter a number 1 - 5 or type \"Quit\" or \"Restart\" here): ");
+                    Console.WriteLine("1.Play\n2.Train\n3.Hunt\n4.Feed\n5.Fly"); //menu of possible interactions
                     string selector = Console.ReadLine();
                     RestartorQuit(selector);
                     pet.Selector = int.Parse(selector);//takes users input a gives it to switch case
-
-                               
-
                     //switch case to activate the interaction methods in virtualpet class, based on user selection
                     switch (pet.Selector)
                     {
@@ -182,7 +195,7 @@ namespace VirtualPet
                             break;
 
                     }
-                    Enter();
+                Console.WriteLine("(hit enter twice to return to Menu.)");
                 } while (pet.Selector < 7);
 
 
@@ -193,8 +206,8 @@ namespace VirtualPet
         {
             for (int i = 3; i >= 1; i--)
             {
-                if (i==3) { Console.WriteLine(i + "............. Rub Again!"); }
-                if (i==2) { Console.WriteLine(i + "...................Rub Again!"); }
+                    if (i==3) { Console.WriteLine(i + "............. Rub Again! (you can hit enter)"); }
+                if (i==2) { Console.WriteLine(i + "...................Rub Again! (you can hit enter)"); }
                 if (i == 1) { Console.WriteLine(i + "......................................."); break; }
                 hatch = Console.ReadLine();
             }
@@ -216,14 +229,29 @@ namespace VirtualPet
             //method generates dragons color and gender
             static void GenerateDragon(string generate)
         {
-                string[] colorsArray = { "Blue Spotted", "Purple and Pink Striped", "Green and Yellow", "Orange, Red, and Black", "Magestic White", "Brown and Olive Spotted" };
-                string[] genderArray = { "Girl", "Boy" };
-                Random colorrandom = new Random();
-                Random genderrandom = new Random();
-                string color = colorsArray[colorrandom.Next(colorsArray.Length)];
-                string gender = genderArray[genderrandom.Next(genderArray.Length)];
-                string dragonGenerator = "Your new pet is a " + color + " " + gender + " Dragon!";
-                Console.WriteLine(dragonGenerator);
+            bool value = false;
+            do
+            {
+                if (generate.ToUpper() != "GENERATE")
+                {
+                    Console.WriteLine("Please enter the correct word, Try Again!");
+                    generate = Console.ReadLine();
+                }
+                else
+                {
+
+                    string[] colorsArray = { "Blue Spotted", "Purple and Pink Striped", "Green and Yellow", "Orange, Red, and Black", "Magestic White", "Brown and Olive Spotted" };
+                    string[] genderArray = { "Female", "Male" };
+                    Random colorrandom = new Random();
+                    Random genderrandom = new Random();
+                    string color = colorsArray[colorrandom.Next(colorsArray.Length)];
+                    string gender = genderArray[genderrandom.Next(genderArray.Length)];
+                    string dragonGenerator = "\nYour new pet is a " + color + " " + gender + " Dragon!";
+                    Console.WriteLine(dragonGenerator);
+                    value = false;
+                    break;
+                }
+            } while (!value);
             }
             static void RestartorQuit(string userinput)
         {
