@@ -32,10 +32,22 @@ namespace VirtualPet
             Console.WriteLine("5. Gold Egg for $200");
 
             Console.Write("\nYour number is: \n");
-            string optionOne = Console.ReadLine();//users input
-            RestartorQuit(optionOne);//quit or restart method
-            int option = int.Parse(optionOne);
-
+            string option = Console.ReadLine();//users input
+            RestartorQuit(option);//quit or restart method
+            bool tester = false;
+            while(!tester)
+            {
+                if(option=="1" || option == "2" || option == "3" || option == "4" || option == "5")
+                {
+                    tester = false;
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Please enter a valid number 1-5. Try Again!");
+                    option = Console.ReadLine();
+                }
+            }
 
                 bool done = false;//var that breaks the loop
             //Below is a switch case nested in a while loop that prints what egg they choose based on available bank (using if statement).
@@ -43,7 +55,7 @@ namespace VirtualPet
             {
                 switch (option)
                 {
-                    case 1:
+                    case "1":
                         if (bank <= 300)
                         {
                             Console.WriteLine("\nYou selected: Blue Egg for $50!");
@@ -53,10 +65,10 @@ namespace VirtualPet
                         {
                             Console.WriteLine("\nYou can't afford this Egg, try again!");
                             Console.Write("Your number is: ");
-                            option = int.Parse(Console.ReadLine());
+                            option = Console.ReadLine(); 
                         }
                         break;
-                    case 2:
+                    case "2":
                         if (bank >= 100)
                         {
                             Console.WriteLine("\nYou selected: Purple Egg for $100!");
@@ -66,10 +78,10 @@ namespace VirtualPet
                         {
                             Console.WriteLine("\nYou can't afford this Egg, try again!");
                             Console.Write("Your number is: ");
-                            option = int.Parse(Console.ReadLine());
+                            option = Console.ReadLine();
                         }
                         break;
-                    case 3:
+                    case "3":
                         if (bank >= 110)
                         {
                             Console.WriteLine("\nYou selected: Green Egg for $110!");
@@ -79,10 +91,10 @@ namespace VirtualPet
                         {
                             Console.WriteLine("\nYou can't afford this Egg, try again!");
                             Console.Write("Your number is: ");
-                            option = int.Parse(Console.ReadLine());
+                            option = Console.ReadLine();
                         }
                         break;
-                    case 4:
+                    case "4":
                         if (bank >= 150)
                         {
                             Console.WriteLine("\nYou selected: White Egg for $150!");
@@ -92,10 +104,10 @@ namespace VirtualPet
                         {
                             Console.WriteLine("\nYou can't afford this Egg, try again!");
                             Console.Write("Your number is: ");
-                            option = int.Parse(Console.ReadLine());
+                            option = Console.ReadLine();
                         }
                         break;
-                    case 5:
+                    case "5":
                         if (bank >= 200)
                         {
                             Console.WriteLine("\nYou selected: Gold Egg for $200!");
@@ -105,7 +117,7 @@ namespace VirtualPet
                         {
                             Console.WriteLine("\nYou can't afford this Egg, try again!");
                             Console.Write("Your number is: ");
-                            option = int.Parse(Console.ReadLine());
+                            option = Console.ReadLine();
                         }
                         break;
                     default:
