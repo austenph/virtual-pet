@@ -9,7 +9,6 @@ namespace VirtualPet
     class VirtualPet
     {
         //fields
-
         private string petname;
         private string pet_type;
         private int energy;
@@ -26,12 +25,10 @@ namespace VirtualPet
         private string feed;
         private string fly;
         private string sleepmethod;
-        
         private int tracking;
         private int tracker;
 
         //properties
-
         public int Tracking
         {
             get { return this.tracker; }
@@ -58,30 +55,23 @@ namespace VirtualPet
             set { this.hunger = value; }
         }
         public int Selector { get; set; }
-
         public string GetName
         {
             get { return this.petname; }
             set { this.petname = value; }
         }
-
         public string GetPetType
         {
             get { return this.pet_type; }
             set { this.pet_type = value; }
         }
 
-        //public LifeCycle MyLifeCycle { get; set; }
-        //public string MyName { get; private set; }
-
-        //this.MyLifeCycle = LifeCycle.Baby;
-        //this.MyName = name;
-
         //constructors
         public VirtualPet()
         {
 
         }
+        //main constructor, establishes the default Dragon Status Display
 
         public VirtualPet(string pet_type)
         {
@@ -103,12 +93,12 @@ namespace VirtualPet
         }
 
         //methods
-        public int Track()
+        public int Track() //this method is a counter. Once a certain number of rounds is played the game ends. Determines Age of Dragon also. 
         {
             this.tracking = tracker++;
             return this.tracking;
         }
-        public void PrintTrack()
+        public void PrintTrack()//this prints the Dragons new "age", based on the track() method counter
         {
             if (this.tracking == 3)
             {
@@ -128,16 +118,15 @@ namespace VirtualPet
             }
         }
 
-        public void MenuDisplayNameandDragon()
+        public void MenuDisplayNameandDragon()//this displays the Interaction Menu Name
         {
             Console.WriteLine("Interactive Menu: " + petname + " The " + pet_type);
         }
-        public void StatusDisplay()
+        public void StatusDisplay()//this displays the status of the Dragon
         {
             Console.WriteLine("\n" + petname + "'s Current Status\nENERGY LEVEL: 8= High 0= Low --------> " + Energy + "\nSKILL LEVEL: 0+ ---------------------> " + SkillLevel + "\nFOOD STOCK QUANTITY: 0+ -------------> " + Food + "\nHUNGER LEVEL: 3= Full 0= Starving ---> " + Hunger+ "\n");
         }
-
-        public void Play()
+        public void Play()//Playing dragon
         {
             Console.WriteLine("\nYou have chosen to " + play + " with " + petname + "!");
             int[] playtimes = { 10, 15, 20, 30, 60 };
@@ -153,7 +142,7 @@ namespace VirtualPet
             StatusDisplay();
             Warning();
         }
-        public void Train()
+        public void Train()//training dragon
         {
             Console.WriteLine("\nYou have chosen to " + train + " " + petname + "!");
             Console.WriteLine("Congrats, every time you train, you gain a new skill level!\nUnfortunately, training exhausts all of your Energy.");
@@ -167,7 +156,7 @@ namespace VirtualPet
             StatusDisplay();
             Warning();
         }
-        public void Hunt()
+        public void Hunt()//dragon hunts
         {
             Console.WriteLine("\nYou have chosen for " + petname + " to " + hunt + "!\nYour Dragon finds food!");
             this.runningenergy = this.runningenergy - 2;
@@ -180,7 +169,7 @@ namespace VirtualPet
             StatusDisplay();
             Warning();
         }
-        public void Eat()
+        public void Eat()//dragon eats
         {
             Console.WriteLine("\nYou have chosen to " + feed + " " + petname + "!\nYour Dragon is so full and energetic now.");
             this.runningenergy = runningenergy + 2;
@@ -194,7 +183,7 @@ namespace VirtualPet
             StatusDisplay();
             Warning();
         }
-        public void Fly()
+        public void Fly()//dragon flys
         {
             Console.WriteLine("\nYou have chosen for " + petname + " to " + fly + "!\nYour Dragon traveled to a new Land!");
             this.runningenergy = this.runningenergy - 2;
@@ -207,7 +196,7 @@ namespace VirtualPet
             StatusDisplay();
             Warning();
         }
-        public void SleepMethod()
+        public void SleepMethod()//dragon sleeps
         {
             Console.WriteLine("\nYou have chosen for " + petname + " to go to " + sleepmethod + "!\n"+ petname+ " now has full energy!");
             this.runningenergy = 8;
@@ -220,26 +209,26 @@ namespace VirtualPet
             StatusDisplay();
             Warning();
         }
-        public void Warning()
+        public void Warning()//warns user that they might lose the game 
         {
             if (this.runningenergy == 0)
             {
-                Console.WriteLine("Warning! Your Dragons Energy is depleted. " + petname + " MUST Sleep or Eat!\n(*If it goes below zero, you will lose the game.)\n");
+                Console.WriteLine("*Warning!* Your Dragons Energy is depleted. " + petname + " MUST Sleep or Eat!\n(*If it goes below zero, you will lose the game.)\n");
             }
             if(this.runningfood ==0)
             {
-                Console.WriteLine("Warning! Your Dragon has no Food Stock! " +petname+ " needs to Hunt!\n(*If you eat without food stock you will lose the game.)\n");
+                Console.WriteLine("*Warning!* Your Dragon has no Food Stock! " +petname+ " needs to Hunt!\n(*If you eat without food stock you will lose the game.)\n");
             }
             if (this.runningSkillLevel== 0)
             {
-                Console.WriteLine("Warning! Your Dragon has no Skills! Train " + petname + " to gain new skills.\n");
+                Console.WriteLine("*Warning!* Your Dragon has no Skills! Train " + petname + " to gain new skills.\n");
             }
             if (this.runninghunger <=1 && this.runninghunger >=0)
             {
-                Console.WriteLine("Warning! Your Dragon is hungry! Feed " + petname + " to resolve hunger.\n(*If it goes below zero, you will lose the game.)\n");
+                Console.WriteLine("*Warning!* Your Dragon is hungry! Feed " + petname + " to resolve hunger.\n(*If it goes below zero, you will lose the game.)\n");
             }
         }
-        public int EnergyLimits()
+        public int EnergyLimits()//sets the max energy level
         {
             if (this.energy > 8)
             {
@@ -247,7 +236,7 @@ namespace VirtualPet
             }
             return this.runningenergy;
         }
-        public int HungerLimits()
+        public int HungerLimits()//sets the max hunger limit
         {
             if (this.hunger > 3)
             {
@@ -255,14 +244,7 @@ namespace VirtualPet
             }
             return this.runningenergy;
         }
-        //public int FoodLimits()
-        //{
-        //    if (this.food <= 0)
-        //    {
-        //        this.runningfood = 0;
-        //    }
-        //    return this.runningfood;
-        //}
+
     }
     }
 

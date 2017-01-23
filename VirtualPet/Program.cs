@@ -12,7 +12,6 @@ namespace VirtualPet
 
         static void Main(string[] args)
         {
-
             //This section sets the storyline up for the user
             Console.WriteLine("Welcome to Dragon Hatcher!");
             Console.WriteLine("The interactive pet game were you hatch and raise your very own dragon!");
@@ -22,9 +21,9 @@ namespace VirtualPet
             Enter();//method to allow user to promt the next part of the game by pressing enter
 
             Console.WriteLine("We are at the Dragon Egg Store.");
-            int bank = Bank();
+            int bank = Bank();//randomized amount of money
             Console.WriteLine("\nYou have randomly been given $" + bank + " in the bank.\n");//generates a random amount of money
-                                                                                           //Egg options
+            //Egg options menu
             Console.WriteLine("Please select which egg you want from the options below.\n(enter a number 1-5 or type  \"Quit\" or \"Restart\")");
             Console.WriteLine("1. Blue Egg for $50");
             Console.WriteLine("2. Purple Egg for $100");
@@ -33,11 +32,12 @@ namespace VirtualPet
             Console.WriteLine("5. Gold Egg for $200");
 
             Console.Write("\nYour number is: \n");
-            string optionOne = Console.ReadLine();
-            RestartorQuit(optionOne);//quit or restart
+            string optionOne = Console.ReadLine();//users input
+            RestartorQuit(optionOne);//quit or restart method
             int option = int.Parse(optionOne);
 
-            bool done = false;
+
+                bool done = false;//var that breaks the loop
             //Below is a switch case nested in a while loop that prints what egg they choose based on available bank (using if statement).
             while (!done)
             {
@@ -114,21 +114,24 @@ namespace VirtualPet
             }
             //end of While/Switch
 
+            //Storyline continued...
             Console.WriteLine("You are now the proud owner of a dragon egg!");
             Enter();
 
+            //hatching egg
             Console.Write("A week has past and your egg is ready to Hatch. You must rub the egg three times");
             Console.Write("to hatch it. Type \"Rub\" to start hatching your dragon!\n(you can also quit or restart here)\n ");
 
             string hatch = Console.ReadLine();
             RestartorQuit(hatch);
             bool counter = false;
+            //uses Hatch method, checks first input only
             do
             {
                 if (hatch.Equals("rub", StringComparison.CurrentCultureIgnoreCase))
                 {
 
-                    Hatch(hatch);
+                    Hatch(hatch);//method to hatch egg by taking user input three times
                     counter = false;
                     break;
                 }
@@ -139,18 +142,17 @@ namespace VirtualPet
                 }
             }
             while (!counter);
-            //method to hatch egg by taking user input "rub" three times
 
             Console.WriteLine("\nCrack!! Congrats, you have hatched your new baby dragon!");
             Enter();
-
             Console.WriteLine("Type \"Generate\" to see what color and gender your dragon is!");
             string generate = Console.ReadLine();
             GenerateDragon(generate);//method that randomly generates a color and gender combo
 
             Console.WriteLine("\nNow it is time to start taking care of your new pet Dragon!");
             Console.WriteLine("Let's start by NAMING your pet! Enter the name you want for your dragon below:\n(you can also quit or restart here) ");
-            //Below I am instantiating the new pet object and assigning it default pet type and Status values
+           
+            //Below I am instantiating the new pet object and assigning it default pet type
             VirtualPet pet = new VirtualPet("Dragon");
 
             pet.GetName = Console.ReadLine();//naming and storing the name in GetName property
@@ -159,13 +161,16 @@ namespace VirtualPet
             Enter();
 
             Console.WriteLine("Now you can interact with " + pet.GetName + "! \nWe will choose from a menu of options in order to raise " + pet.GetName + ". Let's Go!!");
-            
-           bool test = false;
+
+            //BEGINNING OF THE LOOP FOR THE INTERACTION MENU!
+
+           bool test = false; //var that breaks do while loop
             do
             {
-                int track = pet.Track();
-                pet.PrintTrack();
+                int track = pet.Track();//track method, stores value back into track each time loop runs. Acts as a counter
+                pet.PrintTrack(); //prints Dragons "age" as he "grows" based on the tracker
 
+                //Breaks the loop if user does one of the following:
                 if (pet.Hunger < 0)
                 {
                     Console.WriteLine(pet.GetName + "'s Hunger went below zero!");
@@ -184,12 +189,13 @@ namespace VirtualPet
                     test = false;
                     break;
                 }
-                 
                 if(track==15)
                 {
                     test = false;
                     break;
                 }
+
+                //prompts user to start menu again
                 Console.WriteLine("(Hit Enter for Interactive Menu Options)");
                
                 RestartorQuit(Console.ReadLine());
@@ -229,9 +235,12 @@ namespace VirtualPet
                 }
             } while (!test);
 
-            Console.WriteLine("The game is over :( .\nType \"Quit\" or \"Restart\" to continue.");
+            //what happens if loop breaks, game over. 
+            Console.WriteLine("The game is over :( .\nHit any key to quit or \"Restart\" to continue.");
             RestartorQuit(Console.ReadLine());
         }
+        //Methods
+
         //hatch method
         static void Hatch(string hatch)
         {
